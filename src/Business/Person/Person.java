@@ -38,9 +38,15 @@ public class Person {
         if (email == null || !email.trim().matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")) {
             throw new IllegalArgumentException("Enter a valid email address.");
         }
-        if (department == null || department.trim().isEmpty()) {
-            throw new IllegalArgumentException("Department cannot be empty.");
+        
+        // Validate department names to prevent empty or excessively
+        // long values from being stored in university records.
+        if (department == null || department.trim().isEmpty()
+                || department.trim().length() > 80) {
+            throw new IllegalArgumentException(
+                    "Department must be between 1 and 80 characters.");
         }
+
         if (credits < 0 || credits > 300) {
             throw new IllegalArgumentException("Completed credits must be between 0 and 300.");
         }
