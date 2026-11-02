@@ -72,6 +72,19 @@ public final class MidtermModelTest {
                 Person.Category.STUDENT, "Engineering", "BS", 0), "Invalid email rejected");
         rejects(() -> business.registerPerson(admin, "S8010", "New Student", "new@example.edu",
                 Person.Category.STUDENT, "Engineering", "BS", -3), "Negative credits rejected");
+        
+        // Test department length validation.
+        // Departments longer than 80 characters must be rejected.
+        String longDepartment =
+                new String(new char[81]).replace('\0', 'A');
+
+        rejects(() -> business.registerPerson(
+                admin, "S8010", "New Student",
+                "new@example.edu",
+                Person.Category.STUDENT,
+                longDepartment, "BS", 0),
+                "Department over 80 characters rejected");
+
         Person newStudent = business.registerPerson(admin, "S8010", "Alex Turner", "alex.turner@example.edu",
                 Person.Category.STUDENT, "Engineering", "BS Data Science", 12);
         check(newStudent.getCategory() == Person.Category.STUDENT, "Create student profile");
