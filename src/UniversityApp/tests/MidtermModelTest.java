@@ -47,6 +47,22 @@ public final class MidtermModelTest {
         String staff = business.getAuthService().login("staff", "Staff123!");
         check(staff != null, "Staff login succeeds");
         rejects(() -> business.editPerson(staff, "S2001", "Bad Name", "bad@x.edu", "Data", "X", 1), "Staff cannot modify student");
+        // Additional role-based authorization tests.
+        // Verify that non-administrators cannot change protected records.
+        rejects(() -> business.editPerson(student, "F3001",
+                "Unauthorized Change", "change@example.edu",
+                "Other", "Other", 0),
+                "Student cannot edit faculty records");
+
+        rejects(() -> business.deletePerson(student, "S2001"),
+                "Student cannot delete student records");
+
+        rejects(() -> business.listAccounts(staff),
+                "Staff cannot view all user accounts");
+
+        rejects(() -> business.deletePerson(faculty, "S2001"),
+                "Faculty cannot delete student records");
+
         String admin = business.getAuthService().login("admin", "Admin123!");
         check(admin != null, "Administrator login succeeds");
         check(business.listPeople(admin).size() == 4, "Seed people present");
