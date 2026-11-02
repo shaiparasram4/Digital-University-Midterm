@@ -131,3 +131,66 @@ Shai Rashada-Parasram: architecture/integration of the given skeleton and refere
 GitHub: This downloaded ZIP does not fabricate commits, contributors, or pull requests. If your professor applies the team GitHub requirements, you must create real commits and PRs in your own repository. The original rubric calls for at least 10 commits and 5 PRs per student and 30 commits on main; as an individual you should request an exception or adjusted requirement. The `main` branch should always remain runnable.
 
 Canvas: Upload the full NetBeans project ZIP. Presentation slides and MP4/YouTube video are intentionally not included at the student's request. The presentation is 10 rubric points; the missing video might also affect grading. The project must be tested again in the student's local environment before submitting. Enter your NUID in this file before submitting; it was not provided.
+
+
+
+## Final Project Verification
+
+### Application Environment
+- Apache NetBeans IDE 16
+- Java Swing
+- Apache Ant
+- Digital University Access Control System
+
+### Running the Application
+1. Download or clone the GitHub repository.
+2. Open the project in Apache NetBeans 16.
+3. Right-click the project and select Clean and Build.
+4. Confirm the output displays BUILD SUCCESSFUL.
+5. Right-click the project and select Run.
+6. Log in using the demonstration credentials in this README.
+
+### Security and Validation Testing
+The project includes functional and security smoke tests in:
+
+`src/UniversityApp/tests/MidtermModelTest.java`
+
+After building, run the class in NetBeans using Run File,
+or execute from the project root:
+
+`java -cp build/classes UniversityApp.tests.MidtermModelTest`
+
+The tests cover:
+- Login authentication
+- Role-based authorization
+- Administrator account restrictions
+- Duplicate username and person ID rejection
+- Invalid email and credit values
+- Department length validation
+- Disabled accounts and session invalidation
+
+### Manual Verification
+The GitHub repository was downloaded, opened, and
+successfully built in Apache NetBeans 16.
+
+The Java Swing login screen launched successfully,
+and the Administrator dashboard displayed correctly.
+
+The updated functional and security tests were also
+reported as passing during development.
+
+### Additional Documentation
+See [TESTING_GUIDE.md](TESTING_GUIDE.md) for
+manual test cases, expected results, and known limitations.
+
+### Project Scope
+This midterm focuses on the Administrator use case.
+Student, Faculty, and Staff accounts demonstrate
+authentication, restricted access, profile management,
+and course catalog viewing.
+
+Full Faculty and Student academic workflows are
+outside the completed implementation.
+
+
+
